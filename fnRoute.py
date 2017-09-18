@@ -1,5 +1,5 @@
 from regRouteLib import *
-from utilModels import *
+from utils import *
 from models import Base, engine, session, BorrowTrans, Person
 
 regFunc = regFnDetector()
