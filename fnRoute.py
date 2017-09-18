@@ -43,7 +43,7 @@ def return_money(sender, debtor, amount):
         changes = 0 if int(amount) < trans.amount else int(amount) - trans.amount
         trans.returnMoney(amount=int(amount))
         save(trans)
-        CreateTransaction(me, debtor_user, int(amount), "Return")
+        CreateTransaction(me, debtor_user, int(amount)-changes, "Return")
         if(changes == 0):
             return "{0} return {1} Successfully!!".format(debtor, amount)
         else:
