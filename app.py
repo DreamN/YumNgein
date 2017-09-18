@@ -1,9 +1,9 @@
 from flask import Flask, request
-import requests
-import json
-import traceback
 from fnRoute import regFunc
-from settings import verify_token, token
+from settings import verify_token
+from utils import sendMessage
+import traceback
+import json
 
 app = Flask(__name__)
 
@@ -22,16 +22,12 @@ def webhook():
     return regFunc.serve(text, sender)
     # try:
     #     data = json.loads(request.data)
-    #     text = data['entry'][0]['messaging'][0]['message']['text'].lower() # Incoming Message Text
-    #     sender = data['entry'][0]['messaging'][0]['sender']['id'] # Sender ID
-    #
-    #     print("Incoming Message: {}".format(text))
-    #     text_send = "Hello"
-    #     payload = {'recipient': {'id': sender}, 'message': {'text': text_send}}
-    #     r = requests.post('https://graph.facebook.com/v2.6/me/messages/?access_token=' + token, json=payload)
+    #     text = data['entry'][0]['messaging'][0]['message']['text'].lower()  # Incoming Message Text
+    #     sender = data['entry'][0]['messaging'][0]['sender']['id']  # Sender ID
+    #     reply_msg = regFunc.serve(text, sender)
+    #     sendMessage(sender, reply_msg)
     # except Exception as e:
     #     print(traceback.format_exc()) # something went wrong
-    # return "Foo!"#Not Really Necessary
 
 
 @app.route('/')

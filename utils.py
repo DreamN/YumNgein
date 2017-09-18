@@ -1,4 +1,7 @@
 from models import *
+import requests
+import traceback
+from settings import token
 
 
 def getPersonById(sender):
@@ -51,3 +54,12 @@ def changePersonName(person, name):
             session.add(person)
             session.commit()
             return "Changed name from {} to {}".format(old_name, name)
+
+
+def sendMessage(sender_id, msg):
+    try:
+        payload = {'recipient': {'id': sender_id}, 'message': {'text': msg}}
+        r = requests.post('https://graph.facebook.com/v2.6/me/messages/?access_token=' + token, json=payload)
+    except Exception as e:
+        print(traceback.format_exc())  # something went wrong
+    return "Foo!"  # Not Really Necessary
