@@ -21,7 +21,7 @@ def regName(sender, name):
 def borrow_money(sender, creditor, amount):
     creditor_user = getPersonByName(creditor)
     me = getPersonById(sender)
-    if(creditor_user=="name not found"):
+    if(creditor_user == "name not found"):
         return "name not found"
     else:
         trans = getBorrowTrans(me, creditor_user)
@@ -29,6 +29,7 @@ def borrow_money(sender, creditor, amount):
         trans.borrow(amount=int(amount))
         save(trans)
         CreateTransaction(me, creditor_user, int(amount), "Borrow")
+        sendMessage(creditor_user.id, "{} is borrowed {} from you".format(me.name, amount))
         return "You borrowed {} Amount: {} ({}+{})".format(creditor, trans.amount, old_amount, amount)
 
 
@@ -36,7 +37,7 @@ def borrow_money(sender, creditor, amount):
 def return_money(sender, debtor, amount):
     debtor_user = getPersonByName(debtor)
     me = getPersonById(sender)
-    if(debtor_user=="name not found"):
+    if(debtor_user == "name not found"):
         return "name not found"
     else:
         trans = getBorrowTrans(debtor_user, me)
@@ -44,6 +45,7 @@ def return_money(sender, debtor, amount):
         trans.returnMoney(amount=int(amount))
         save(trans)
         CreateTransaction(me, debtor_user, int(amount)-changes, "Return")
+        sendMessage(debtor_user.id, "you're returned {} to {}".format(amount, me.name))
         if(changes == 0):
             return "{0} return {1} Successfully!!".format(debtor, amount)
         else:

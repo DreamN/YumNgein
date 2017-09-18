@@ -56,9 +56,9 @@ def changePersonName(person, name):
             return "Changed name from {} to {}".format(old_name, name)
 
 
-def sendMessage(sender_id, msg):
+def sendMessage(target_user, msg):
     try:
-        payload = {'recipient': {'id': sender_id}, 'message': {'text': msg}}
+        payload = {'recipient': {'id': target_user}, 'message': {'text': msg}}
         r = requests.post('https://graph.facebook.com/v2.6/me/messages/?access_token=' + token, json=payload)
     except Exception as e:
         print(traceback.format_exc())  # something went wrong
