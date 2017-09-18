@@ -13,8 +13,7 @@ def hello(sender):
 @regFunc.route(r"^i am (?P<name>.+)")
 def regName(sender, name):
     person = getPersonById(sender)
-    changePersonName(person, name)
-    return "{}> Now! You're {}".format(sender, name)
+    return changePersonName(person, name)
 
 
 @regFunc.route(r"^borrow (?P<creditor>.+) (?P<amount>.+)")
