@@ -48,3 +48,13 @@ def return_money(sender, debtor, amount):
             return "{0} return {1} Successfully!!".format(debtor, amount)
         else:
             return "{0} return {1} Successfully!! and {0} recieve changes: {2}".format(debtor, amount, changes)
+
+
+@regFunc.route(r"borrowlist")
+def borrow_list(sender):
+    return getBorrowList(sender)
+
+
+@regFunc.route(r"lendlist")
+def lend_list(sender):
+    return getLendList(sender)

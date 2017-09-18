@@ -18,7 +18,7 @@ def initVerif():
 @app.route('/webhook', methods=['POST'])
 def webhook():
     text = request.form['text']
-    sender = "sd7hkj"
+    sender = "me"
     return regFunc.serve(text, sender)
     # try:
     #     data = json.loads(request.data)

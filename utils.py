@@ -63,3 +63,21 @@ def sendMessage(sender_id, msg):
     except Exception as e:
         print(traceback.format_exc())  # something went wrong
     return "Foo!"  # Not Really Necessary
+
+
+def getLendList(sender):
+    b_list = filter(lambda b: b.amount > 0, session.query(BorrowTrans).filter_by(creditor_id=sender))
+    s = "## Lend List\n"
+    for b in b_list:
+        s += "{}: {}\n".format(b.me.name, b.amount)
+    # print(s)
+    return s
+
+
+def getBorrowList(sender):
+    b_list = filter(lambda b: b.amount > 0, session.query(BorrowTrans).filter_by(me_id=sender))
+    s = "## Borrow List\n"
+    for b in b_list:
+        s += "{}: {}\n".format(b.creditor.name, b.amount)
+    # print(s)
+    return s
