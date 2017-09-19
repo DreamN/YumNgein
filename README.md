@@ -5,7 +5,7 @@
   $ python3 -m pip install -r requirements.txt
 ```
 
-- Create PostgreSql Database and grant to user ex
+- Create PostgreSql Database and grant to user
 ```sql
   CREATE DATABASE mydb;
   CREATE USER myuser WITH PASSWORD 'mypassword';
